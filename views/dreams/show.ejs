@@ -1,0 +1,44 @@
+<!--
+  Step 1: This is your descretion how you would like to display data,
+  but you must list display only one document based on the passed ID.
+-->
+
+<%- include ('../partials/header') %>
+
+<div class="container my-5">
+<div class="jumbotron">
+  <h1 class="display-4">I love to become a <strong><%= dream.title %></strong></h1>
+  <p>Update At <%= dream.updatedAt.toLocaleString("en-CA")%></p>
+
+  <h3>Dear <%= dream.user.fullname %></h3>
+    <p class = "lead">This is why you want to be a <em><%= dream.title %></em></p>
+      <p class = "lead">
+        <%= dream.note %>
+      </p>
+
+ 
+
+  <hr class="my-4">
+
+  <% if (dream.ageGap < 0 )  { %>
+    <form class="form-inline" action="/dreams/delete" method="post" onsubmit="return confirm('Read your note again to remind yourself why you had this dream. Click Yes to confirm your deletion');">
+      <input type="hidden" value="<%= dream.id %>" name="id">
+      <button class="delete" type="submit">
+        <i class="fa fa-trash">&nbsp;</i>
+        Kill Dream
+      </button>
+      </form> 
+  
+  <% }  %>
+  
+</div>
+
+<div class="card-body">
+    
+</div>
+<h4>This is me:</h4>
+<p card-text> <%= dream.user.about %></p>
+</div>
+<br>
+
+<%- include ('../partials/footer') %>

@@ -1,0 +1,59 @@
+<!-- Page Content -->
+  
+
+<%- include ('../partials/header') %>
+
+
+<div class="container my-5">
+
+    <header>
+      <h1>List of your dreams</h1>
+    </header>
+    <hr>
+    <div class = "row">
+        <% for (let dream of dreams) { %>
+            <% if (authorized && (typeof dream.user === 'undefined' || dream.user.email === email))  { %>
+           
+      <div class="col-md-4 mb-5">
+        
+
+          <div class="card-body">
+            <h5 class="card-title"><%= dream.title %></h5>
+            
+            <p class="lead">I am now <strong><%= dream.user.ageNow %> years old </strong> and I am going to become a <strong><%= dream.title %></strong> at the age of <strong><%= dream.age %></strong> </p>
+
+  <% if (dream.ageGap > 0 )  { %>
+        <p class="lead">I want to remind myself that I have <strong><%= dream.ageGap %> years left </strong>to achieve this dream. </p>
+      
+      <% } else { %>
+        <p class="lead">I pass <%= dream.ageGapAbs %> years to achieve my dream. Maybe I hid it too well.</p>
+        <p> It is now my decision to keep chasing this dream by hitting <strong>edit</strong> button or <strong>kill </strong> it forever AFTER reading my Dream Note one more time</p>
+
+
+          <p class="lead">
+            <a  href="/dreams/<%= dream.id %>/edit" role="button"><i class="fa fa-edit">&nbsp;</i> Edit Dream</a>
+          </p>
+            
+        <% } %>
+  </p>
+           
+          </div>
+          <div class="card-footer">
+            <a href="/dreams/<%= dream.id %>" class="btn btn-primary" > Read Dream Note</a>
+          </div>
+        </div>
+        <% }   %>
+
+        <% } %>
+
+
+      </div>
+     
+   
+    </div>
+
+  </div>
+  <!-- /.container -->
+
+
+  <%- include ('../partials/footer') %>

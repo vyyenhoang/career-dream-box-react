@@ -1,0 +1,34 @@
+<!--
+  Step 1: The form must be sharable between the new and edit views.
+-->
+
+<form action="<%= (typeof actionPath === 'undefined') ? '/dreams' : actionPath %>", method="POST">
+  <% if (typeof actionPath !== 'undefined') { %>
+    <input type="hidden" name="id" value="<%= formData.id %>">
+  <% } %>
+
+  <div class="form-group">
+    <label for="title">Your Dream Career Title</label>
+    <input type="text" name="title" class="form-control" value="<%= formData.title %>" placeholder = "pilot or doctor or rock-star" >
+  </div>
+
+  <div class="form-group">
+    <label for="note">Why do you want this career</label>
+    <textarea type="text" name="note" class="form-control" value="<%= formData.note %>">
+
+      <%= formData.note %>
+
+    </textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="age">At what age you want to achieve your dream?</label>
+    <input type="number" name="age" class="form-control" value="<%= formData.age %>">
+  </div>
+
+  
+
+  <div class="form-group">
+    <button class="btn btn-dark">Submit your Dream</button>
+  </div>
+</form>
